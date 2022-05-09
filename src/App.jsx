@@ -1,3 +1,14 @@
+import { Switch, Route } from 'react-router-dom';
+import Home from './views/Home';
+
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </>
+  );
 }
