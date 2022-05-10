@@ -10,7 +10,6 @@ const CharacterProvider = ({ children }) => {
 
   const getCharacterById = async (id) => {
     const thisCharacter = characters.find((val) => val.id === Number(id));
-    console.log('thisCharacter', thisCharacter);
     if (!thisCharacter) {
       setLoading(true);
       const fetchData = async () => {

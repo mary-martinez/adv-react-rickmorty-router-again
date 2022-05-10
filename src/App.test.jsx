@@ -1,11 +1,4 @@
-import {
-  findAllByRole,
-  findByRole,
-  fireEvent,
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 import { CharacterProvider } from './context/CharacterContext';
@@ -51,4 +44,3 @@ describe('tests App', () => {
   });
 });
 
-// finish writing tests (clicking a link, checking detail page), then build out MSW
