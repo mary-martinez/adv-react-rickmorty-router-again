@@ -5,26 +5,16 @@ import { useCharacterContext } from '../context/CharacterContext';
 import { fetchCharacterById } from '../services/fetchRandM';
 
 export default function Details() {
-  const { characters, character, setCharacter } = useCharacterContext();
+  const { character, loading, getCharacterById } = useCharacterContext();
   // const [character, setCharacter] = useState({});
   const { id } = useParams();
   const history = useHistory();
-  const [loading, setLoading] = useState(true);
 
+  // will need to move useEffect to context;
+  // will have a function called getCarachterById and it could do most
   useEffect(() => {
-    const thisCharacter = characters.find((val) => val.id === Number(id));
-    if (!thisCharacter) {
-      const fetchData = async () => {
-        const data = await fetchCharacterById(id);
-        setCharacter(data);
-      };
-      fetchData();
-    } else {
-      setCharacter(thisCharacter);
-    }
-    setLoading(false);
-    // setCharacter(info);
-  }, []);
+    if (!loading) getCharacterById(id);
+  }, [id, loading]);
 
   const buttonClick = () => {
     history.push('/');
@@ -34,12 +24,12 @@ export default function Details() {
   return (
     <div>
       <button onClick={buttonClick}>Home</button>
-      {loading ? (
+      {loading || !character.id ? (
         <p>loading...</p>
       ) : (
         <>
           <h3>{character.name}</h3>
-          <img src={character.image} />
+          <img src={character.image} alt={`Image of ${character.name}`} />
           <p>Species: {character.species}</p>
           <p>Status: {character.status}</p>
         </>

@@ -1,22 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CharacterCard from '../components/CharacterCard';
 import { useCharacterContext } from '../context/CharacterContext';
-import { fetchCharacters } from '../services/fetchRandM';
 
 export default function Home() {
-  const { characters, setCharacters, setCharacter } = useCharacterContext();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchCharacters();
-      setCharacters(data);
-      setCharacter({});
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
+  const { characters, loading } = useCharacterContext();
 
   return (
     <>
